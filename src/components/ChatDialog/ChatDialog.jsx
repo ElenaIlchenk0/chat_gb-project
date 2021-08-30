@@ -1,15 +1,15 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Avatar from '@material-ui/core/Avatar'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemText from '@material-ui/core/ListItemText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import Dialog from '@material-ui/core/Dialog'
-import PersonIcon from '@material-ui/icons/Person'
-import { blue } from '@material-ui/core/colors'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Btn from '../Btn/Btn';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import PersonIcon from '@material-ui/icons/Person';
+import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   avatar: {
@@ -19,19 +19,19 @@ const useStyles = makeStyles({
   margin: {
     margin: '20px auto',
   },
-})
+});
 
 function SimpleDialog(props) {
-  const classes = useStyles()
-  const { onClose, selectedValue, open } = props
+  const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    onClose(selectedValue)
-  }
+    onClose();
+  };
 
   const handleListItemClick = (value) => {
-    onClose(value)
-  }
+    onClose(value);
+  };
 
   return (
     <Dialog
@@ -57,40 +57,30 @@ function SimpleDialog(props) {
         ))}
       </List>
     </Dialog>
-  )
+  );
 }
 
 export default function SimpleDialogDemo(props) {
-  const [open, setOpen] = React.useState(false)
-  const [selectedValue, setSelectedValue] = React.useState(props.contacts[1])
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState();
 
   const handleClickOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = (value) => {
-    setOpen(false)
-    setSelectedValue(value)
+    setOpen(false);
+    setSelectedValue(value);
 
     if (value) {
-      props.addChat(value)
+      props.addChat(value);
+      setSelectedValue(value);
     }
-  }
+  };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <Button
-        style={{
-          margin: '30px 0',
-          color: '#0c4a48',
-          border: '1px solid #0c4a48',
-        }}
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
-        New chat
-      </Button>
+    <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+      <Btn handler={handleClickOpen} title="New chat" />
       <SimpleDialog
         selectedValue={selectedValue}
         open={open}
@@ -98,5 +88,5 @@ export default function SimpleDialogDemo(props) {
         contacts={props.contacts}
       />
     </div>
-  )
+  );
 }

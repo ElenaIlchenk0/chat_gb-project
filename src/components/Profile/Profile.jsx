@@ -1,25 +1,28 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { goBack } from 'connected-react-router';
+import { auth } from '../../services/firebase';
+import Btn from '../Btn/Btn';
 
 import './Profile.css';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
+  const email = useSelector((state) => state.userReducer.userEmail);
   const onClickHandler = useCallback(() => {
     dispatch(goBack());
   }, [dispatch]);
 
+  const logOut = () => {
+    auth().signOut();
+  };
+
   return (
     <div className={`Profile ${props.isOpen ? 'open' : ''}`}>
-      PROFILE
+      Current user: {email}
       <br />
-      <button
-        className="close-profile"
-        onClick={() => onClickHandler(dispatch)}
-      >
-        Close
-      </button>
+      <Btn handler={logOut} title="LogOut" />
+      <Btn handler={() => onClickHandler(dispatch)} title="Close" />
     </div>
   );
 };

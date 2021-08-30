@@ -47,6 +47,7 @@ export const addChat = (title) => (dispatch, getState) => {
   });
 
   //не работает then и catch
+
   // .then(() => {
   //   console.log('then');
   //   dispatch(addNewChat(title));

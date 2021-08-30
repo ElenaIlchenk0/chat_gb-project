@@ -1,0 +1,12 @@
+.login {
+    max-width: 500px;
+    margin: auto;
+}
+.login input {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: thin solid #065032;
+    width: 60%;
+}
