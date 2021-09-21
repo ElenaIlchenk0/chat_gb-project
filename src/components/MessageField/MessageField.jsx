@@ -45,15 +45,19 @@ const MessageField = (props) => {
 
   const renderMsgs = () => {
     const { activeChat } = props;
-
-    return chats[activeChat].messageList.map((messageId, index) => (
-      <MessageComponent
-        key={index}
-        text={msgs[messageId].text}
-        sender={msgs[messageId].sender}
-        chatClickHandler={() => chatClickHandler(messageId, props.activeChat)}
-      />
-    ));
+    return chats[activeChat].messageList.map((messageId, index) => {
+      if (Object.keys(msgs).length) {
+        return (
+          <MessageComponent
+            key={index}
+            text={msgs[messageId].text}
+            sender={msgs[messageId].sender}
+            chatClickHandler={() => chatClickHandler(messageId, props.activeChat)}
+          />
+        )
+      }
+      return null;
+    });
   };
 
   return (
