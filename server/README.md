@@ -1,2 +1,3 @@
-npm i
-npm run api
+### To start server:
+- npm i
+- npm run api
